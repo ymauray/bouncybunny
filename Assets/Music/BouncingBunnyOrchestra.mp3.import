@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BouncingBunnyOrchestra.mp3-bf2a6c2d8a0adbc995b2b08d95f5a8b1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/BouncingBunnyOrchestra.mp3"
+dest_files=[ "res://.import/BouncingBunnyOrchestra.mp3-bf2a6c2d8a0adbc995b2b08d95f5a8b1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

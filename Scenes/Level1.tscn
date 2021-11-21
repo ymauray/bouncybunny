@@ -1,0 +1,295 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://worl_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Bunny.tscn" type="PackedScene" id=2]
+[ext_resource path="res://oneway_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Assets/JumperPack/PNG/Background/bg_layer1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/JumperPack/PNG/Background/bg_layer2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/JumperPack/PNG/Background/bg_layer3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/JumperPack/PNG/Background/bg_layer4.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/FallZoneShape.gd" type="Script" id=8]
+[ext_resource path="res://Assets/JumperPack/PNG/Environment/grass2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/JumperPack/PNG/Environment/cactus.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/coin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/JumperPack/PNG/Environment/mushroom_red.png" type="Texture" id=12]
+[ext_resource path="res://Assets/JumperPack/PNG/Environment/grass_brown1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/JumperPack/PNG/Items/gold_1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Fonts/Comic Shark.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scenes/HUD.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/PinkSlime.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/Level1.gd" type="Script" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1442.5, 96 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.235294 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 56
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 96
+font_data = ExtResource( 15 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 19 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, -900 )
+transform = Transform2D( 1, 0, 0, 1, 0, -900 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.529412, 0.647059, 0.337255, 0.215686 )
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.529412, 0.647059, 0.337255, 0.607843 )
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.529412, 0.647059, 0.337255, 1 )
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Grass2" type="Sprite" parent="Environment"]
+position = Vector2( -576, 736 )
+texture = ExtResource( 9 )
+
+[node name="Cactus" type="Sprite" parent="Environment"]
+position = Vector2( 512, 256 )
+texture = ExtResource( 10 )
+
+[node name="MushroomRed" type="Sprite" parent="Environment"]
+position = Vector2( 352, 736 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 12 )
+
+[node name="GrassBrown1" type="Sprite" parent="Environment"]
+position = Vector2( 1168, -144 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 13 )
+
+[node name="GrassBrown2" type="Sprite" parent="Environment"]
+position = Vector2( 1632, 368 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 13 )
+
+[node name="OneWayTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+collision_layer = 2
+collision_mask = 49
+format = 1
+tile_data = PoolIntArray( 20, 2, 0, 21, 0, 0, 196629, 2, 0, 196630, 0, 0, 589850, 2, 0, 589851, 0, 0, 720889, 2, 0, 720890, 0, 0, 655389, 2, 0, 655390, 0, 0, 655392, 0, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="OneWayTiles"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayTiles/StaticBody2D"]
+position = Vector2( -384, 672 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OneWayTiles/StaticBody2D"]
+position = Vector2( 1408, 224 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OneWayTiles/StaticBody2D"]
+position = Vector2( 1344, 32 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OneWayTiles/StaticBody2D"]
+position = Vector2( 1728, 608 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="OneWayTiles/StaticBody2D"]
+position = Vector2( 1920, 672 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="SolidTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 2
+collision_mask = 49
+format = 1
+tile_data = PoolIntArray( -262156, 0, 0, -196620, 0, 0, -262112, 0, 0, -131084, 0, 0, -196576, 0, 0, -65548, 0, 0, -131058, 1, 0, -131057, 2, 0, -131056, 2, 0, -131055, 2, 0, -131054, 3, 0, -131040, 0, 0, -12, 0, 0, -65504, 0, 0, 65524, 0, 0, 32, 0, 0, 131060, 0, 0, 65568, 0, 0, 196596, 0, 0, 131104, 0, 0, 262132, 0, 0, 196640, 0, 0, 327668, 0, 0, 262176, 0, 0, 393204, 0, 0, 327684, 1, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 3, 0, 327712, 0, 0, 458740, 0, 0, 393218, 4, 0, 393219, 2, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393237, 4, 0, 393238, 2, 0, 393239, 2, 0, 393240, 2, 0, 393241, 5, 0, 393248, 0, 0, 524276, 0, 0, 458770, 4, 0, 458771, 5, 0, 458784, 0, 0, 589812, 0, 0, 589823, 4, 0, 524288, 5, 0, 524320, 0, 0, 655348, 0, 0, 589839, 4, 0, 589840, 5, 0, 589856, 0, 0, 720884, 0, 0, 720892, 4, 0, 720893, 5, 0, 655392, 0, 0, 786420, 0, 0, 720928, 0, 0, 851956, 0, 0, 851957, 2, 0, 851958, 2, 0, 851959, 2, 0, 851960, 2, 0, 851961, 2, 0, 851962, 2, 0, 851963, 2, 0, 851964, 2, 0, 851965, 2, 0, 851966, 2, 0, 851967, 2, 0, 786432, 2, 0, 786433, 2, 0, 786434, 2, 0, 786435, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 3, 0, 786442, 1, 0, 786443, 2, 0, 786444, 2, 0, 786445, 2, 0, 786446, 2, 0, 786447, 2, 0, 786448, 2, 0, 786449, 3, 0, 786457, 1, 0, 786458, 2, 0, 786459, 2, 0, 786460, 2, 0, 786461, 2, 0, 786462, 2, 0, 786463, 2, 0, 786464, 0, 0 )
+
+[node name="FallZone" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="FallZoneShape" type="CollisionShape2D" parent="FallZone"]
+position = Vector2( 669.5, 992 )
+shape = SubResource( 3 )
+script = ExtResource( 8 )
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 0, 464 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -192, 592 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -384, 592 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1024, 528 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1216, 400 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1408, 144 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1344, -48 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1056, -176 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1728, 528 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1920, 592 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 1488, 336 )
+
+[node name="Ennemies" type="Node2D" parent="."]
+
+[node name="PinkSlime1" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( 288, 304 )
+
+[node name="PinkSlime2" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( -640, 752 )
+direction = 1
+
+[node name="PinkSlime3" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( 1104, -144 )
+direction = 1
+
+[node name="PinkSlime4" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( 1952, 626 )
+
+[node name="PinkSlime5" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( 1552, 368 )
+
+[node name="PinkSlime6" parent="Ennemies" instance=ExtResource( 17 )]
+position = Vector2( 928, 752 )
+direction = 1
+
+[node name="Bunny" parent="." instance=ExtResource( 2 )]
+position = Vector2( 528, 272 )
+scale = Vector2( 0.4, 0.4 )
+collision_mask = 26
+
+[node name="Camera2D" type="Camera2D" parent="Bunny"]
+scale = Vector2( 2.5, 2.5 )
+current = true
+limit_left = -704
+limit_right = 2048
+limit_bottom = 832
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+scale = Vector2( 0.5, 0.5 )
+transform = Transform2D( 0.5, 0, 0, 0.5, 0, 0 )
+script = ExtResource( 16 )
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_right = 2048.0
+margin_bottom = 128.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "
+"
+}
+
+[node name="coint" type="TextureRect" parent="HUD"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="Label" parent="HUD"]
+margin_left = 144.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 107.0
+custom_colors/font_color = Color( 1, 0.854902, 0.290196, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="counter" type="Label" parent="HUD"]
+margin_left = 202.0
+margin_top = 8.0
+margin_right = 346.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 1, 0.854902, 0.290196, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "##"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="FallZone" to="FallZone/FallZoneShape" method="_on_FallZone_body_entered"]
+[connection signal="coin_collected" from="Coins/Coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin2" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin3" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin4" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin5" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin6" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin7" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin8" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin9" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin10" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin11" to="HUD" method="_on_coin_collected"]

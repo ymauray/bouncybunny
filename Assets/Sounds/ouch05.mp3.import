@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ouch05.mp3-e6fc4c37e463f1f9ed1c76e59f971648.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/ouch05.mp3"
+dest_files=[ "res://.import/ouch05.mp3-e6fc4c37e463f1f9ed1c76e59f971648.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
