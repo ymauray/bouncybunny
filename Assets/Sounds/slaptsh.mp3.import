@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/slaptsh.mp3-c52930f3deffed6a9a21a2a89396d18b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/slaptsh.mp3"
+dest_files=[ "res://.import/slaptsh.mp3-c52930f3deffed6a9a21a2a89396d18b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

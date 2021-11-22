@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/JumperPack/PNG/Items/silver_1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/JumperPack/PNG/Items/gold_1.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/JumperPack/PNG/Items/silver_5.png" type="Texture" id=17]
 [ext_resource path="res://Assets/JumperPack/PNG/Items/gold_6.png" type="Texture" id=18]
 [ext_resource path="res://Assets/JumperPack/PNG/Items/bronze_6.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sounds/confirmation_002.ogg" type="AudioStream" id=20]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 43.1045
@@ -84,11 +85,15 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "silver"
+frame = 4
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Bounce = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

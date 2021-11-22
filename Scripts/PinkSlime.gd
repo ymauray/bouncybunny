@@ -4,13 +4,17 @@ export var direction = -1;
 var velocity = Vector2(0, 0);
 var speed = 90;
 
+var splash_sound = load("res://Assets/Sounds/slaptsh.mp3")
+
 const GRAVITY = 35;
 
 func _ready():
 	if direction == 1:
 		$AnimatedSprite.flip_h = true;
 	$FloorDetector.position.x = $CollisionShape2D.shape.extents.x * direction;
-		
+	splash_sound.loop = false;
+	$SplashSound.stream = splash_sound;
+	
 func _physics_process(delta):
 	
 	var flip = false;
@@ -32,6 +36,7 @@ func _physics_process(delta):
 
 
 func _on_TopCollisionDetector_body_entered(body):
+	$SplashSound.play()
 	$AnimatedSprite.play("squashed");
 	speed = 0;
 	set_collision_layer_bit(4, false);
